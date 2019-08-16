@@ -1,7 +1,17 @@
-import React, { Component } from 'react'
-import { Text, View, StyleSheet, Button, TouchableOpacity} from 'react-native'
+import React, { Component } from "react";
+import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
 
 export class App extends Component {
+  showNumbers = () => {
+    let rows = [];
+    for (let i = 0; i < 4; i++) {
+      let row = [];
+      for (let j = 0; j < 3; j++) {
+        row.push(<TouchableOpacity><Text>{i + j}</Text></TouchableOpacity>);
+      }
+      rows.push(<View style={styles.row}> {i + j} </View>);
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -12,44 +22,29 @@ export class App extends Component {
           <Text style={styles.resultText}>121</Text>
         </View>
         <View style={styles.buttons}>
-        <View style={styles.numbers}>
+          <View style={styles.numbers}>
+            {this.showNumbers}
         <View style={styles.row}>
-          <TouchableOpacity>
-            <Text>0</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>0</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>0</Text>
-          </TouchableOpacity>
+          <Button title="." />
+          <Button title="0" />
+          <Button title="=" />
         </View>
-        <View style={styles.row}>
-          <Button title="0" />
-          <Button title="0" />
-          <Button title="0" />
-        </View>
-        <View style={styles.row}>
-          <Button title="0" />
-          <Button title="0" />
-          <Button title="0" />
-        </View>
-        </View>
-        <View style={styles.operations}>
-          <Button title="+" />
-          <Button title="-" />
-          <Button title="*" />
-          <Button title="/" />
-        </View>
+          </View>
+          <View style={styles.operations}>
+            <Button title="+" />
+            <Button title="-" />
+            <Button title="*" />
+            <Button title="/" />
+          </View>
         </View>
       </View>
-    )
+    );
   }
 }
 
-export default App
+export default App;
 
-const styles =  StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -57,13 +52,13 @@ const styles =  StyleSheet.create({
     flex: 2,
     backgroundColor: "green",
     alignItems: "flex-end",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   result: {
     flex: 1,
     backgroundColor: "red",
     justifyContent: "center",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
   },
   buttons: {
     flex: 7,
@@ -90,6 +85,6 @@ const styles =  StyleSheet.create({
     fontSize: 24,
   },
   calculationText: {
-    fontSize: 48
-  }
-})
+    fontSize: 48,
+  },
+});
